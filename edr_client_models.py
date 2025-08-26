@@ -1,4 +1,4 @@
-from typing import Literal, NotRequired, Optional, TypedDict
+from typing import Literal, NotRequired, TypedDict
 
 class EdrParameter(TypedDict):
     id: str 
