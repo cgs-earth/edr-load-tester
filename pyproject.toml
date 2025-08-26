@@ -1,0 +1,16 @@
+[project]
+name = "edrlocust"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "locust>=2.39.0",
+    "requests>=2.32.5",
+]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.404",
+    "ruff>=0.12.10",
+]

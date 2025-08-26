@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Locust: 5 users, with specific config file",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "locust",
+            "args": [
+                "-f",
+                "locustfile.py",
+                "--headless",
+                "--users=5",
+                "--host=https://api.wwdh.internetofwater.app/"
+            ],
+            "console": "integratedTerminal",
+            "gevent": true
+        }
+    ]
+}
