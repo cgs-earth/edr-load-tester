@@ -20,7 +20,7 @@ def on_test_start(environment, **kwargs):
 
 class EDRHttpTesterUser(TaskSet):
 
-    client: HttpSession # type: ignore
+    client: HttpSession # type: ignore since the locust base class doesn't type this properly
 
     @task
     def index(self):
