@@ -1,5 +1,6 @@
 from functools import partial
 import logging
+import os
 from locust import HttpUser, TaskSet, constant, run_single_user, task, events
 from locust.clients import HttpSession
 import gevent
@@ -24,7 +25,8 @@ def fetch_week_of_data(client: HttpSession, base_url: str, location_id: str):
     # ensure the scheduled greenlets are ran in random order
     gevent.sleep(random.randint(1, 5))
     today_as_iso = datetime.date.today().isoformat()
-    lastWeek = datetime.date.today() - datetime.timedelta(days=7)
+    edr_date_range = os.environ.get("DAYS_OF_DATA_TO_FETCH", 7)
+    lastWeek = datetime.date.today() - datetime.timedelta(days=int(edr_date_range))
     new_link = (
         base_url + f"/{location_id}?datetime={lastWeek.isoformat()}/{today_as_iso}"
     )
@@ -89,6 +91,10 @@ class EDRHttpTesterUser(TaskSet):
     @task
     def index(self):
         self.client.get("/")
+
+    @task
+    def location_with_ontology(self):
+        self.client.get("/collections?parameter-name=*")
 
     @task
     def ontology(self):
