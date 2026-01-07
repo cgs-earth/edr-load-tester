@@ -93,10 +93,6 @@ class EDRHttpTesterUser(TaskSet):
         self.client.get("/")
 
     @task
-    def location_with_ontology(self):
-        self.client.get("/collections?parameter-name=*")
-
-    @task
     def ontology(self):
         response: TopLevelCollectionResponse = self.client.get(
             "/collections?parameter-name=*"
